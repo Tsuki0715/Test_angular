@@ -1,0 +1,18 @@
+<main class="main">
+    <h1>Hello, {{ title }}</h1>
+    <button type="button" [disabled]="isDisabled">{{ myBtn }}</button>
+    <img alt="angular" width="100" height="100" [src]="angularImage" />
+
+    <div [style.backgroundColor]="bgColor">
+        <h2 [style.color]="titleColor">{{ title }}</h2>
+        <p [style]="description">Description</p>
+    </div>
+
+    <h2 [class.textColor]="redTextBF">Red Text B False</h2>
+    <h2 [class.textColor]="redTextBT">Red Text B True</h2>
+    <h2 [class.textColor]="redTextSY == 'yes'">Red Text S Yes</h2>
+    <h2 [class.textColor]="redTextSN == 'no'">Red Text S No</h2>
+
+    <button (click)="incrementCounter()">Increment</button>
+    <p>Counter: {{ counter }}</p>
+</main>
