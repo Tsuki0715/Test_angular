@@ -33,6 +33,7 @@
 
 
     <!-- Structural Directives -->
+    <hr/>
     <h1>{{ title2 }}</h1>
 
     <!-- ngIf -->
@@ -58,6 +59,7 @@
 
 
     <!-- Pipes -->
+    <hr/>
     <h1>{{ title3 | uppercase }}</h1>
     <h1>{{ title3 | lowercase }}</h1>
 
@@ -75,6 +77,19 @@
 
 
     <!-- ServicesDI -->
+    <hr/>
     <h1>{{ title4 }}</h1>
     <p>{{ messages2 }}</p>
+
+
+    <!-- API -->
+    <hr/>
+    <h1>{{ title5 }}</h1>
+    <div *ngFor = "let post of posts">
+        <div *ngIf="post.id <= 20">
+            <p>{{ post.id }}</p>
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.body }}</p>
+        </div>
+    </div>
 </main>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -14,7 +14,7 @@ import { MessagesService } from './services/messages.service';
   styleUrl: './app.component.scss',
   providers: [MessagesService],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title1: string = 'hello-world';
   myBtn: string = 'My Button';
   counter: number = 0;
@@ -82,5 +82,20 @@ export class AppComponent {
     this.messages2 = messageService.getMessages();
   }
 
+  /**********************
+  API Integration with HttpClient Module
+  **********************/
+  title5: string = 'API Integration with HttpClient Module';
+  posts: any[] = [];
 
+  ngOnInit() {
+    this.messageService.getPosts().subscribe({
+      next: (response) => {
+        this.posts = response;
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    })
+  }
 }
