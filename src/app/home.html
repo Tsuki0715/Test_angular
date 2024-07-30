@@ -30,4 +30,28 @@
 
     <!-- ngStyle -->
     <div class="color-box" [ngStyle]="{'background-color': selectedColor}">Box</div>
+
+    <!-- Structural Directives -->
+    <h1>{{ title2 }}</h1>
+
+    <!-- ngIf -->
+    <div *ngIf="isLoggedIn">Welcome, {{ username }}</div>
+    <div *ngIf="!isLoggedIn">Please login to view the content</div>
+
+    <div *ngIf="isLoggedIn && true">Login content</div>
+
+    <div *ngIf="isLoggedIn; else loggedOut">Welcome back, {{ username }}</div>
+    <ng-template #loggedOut>Please login</ng-template>
+
+    <!-- ngFor -->
+    <ul>
+        <li *ngFor="let name of names; let i = index">{{ i+1 }}. {{ name }}</li>
+    </ul>
+
+    <!-- ngSwitch -->
+    <div [ngSwitch]="grade">
+        <p *ngSwitchCase="'A'">Execllent</p>
+        <p *ngSwitchCase="'B'">Good</p>
+        <p *ngSwitchDefault>Unknown</p>
+    </div>
 </main>

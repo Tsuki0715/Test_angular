@@ -45,4 +45,21 @@ export class AppComponent {
 
   // ngStyle
   selectedColor: string = 'red';
+
+  /* 
+  *********************
+  Structural Directives 
+  *********************
+  */
+
+  // ngIf
+  title2: string = 'Structural Directives';
+  isLoggedIn: boolean = true;
+  username: string = 'Terry';
+
+  // ngFor
+  names: string[] = ['Tom', 'Jane', 'Mary'];
+
+  // ngSwitch
+  grade: string = "A";
 }
