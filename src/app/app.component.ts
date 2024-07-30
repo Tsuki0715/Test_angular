@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AppendPipe } from './pipes/append.pipe';
 import { MessagesService } from './services/messages.service';
+import { Post } from './interfaces/posts.interface';
 
 @Component({
   selector: 'app-root',
@@ -86,11 +87,11 @@ export class AppComponent implements OnInit {
   API Integration with HttpClient Module
   **********************/
   title5: string = 'API Integration with HttpClient Module';
-  posts: any[] = [];
+  posts: Post[] = [];
 
   ngOnInit() {
     this.messageService.getPosts().subscribe({
-      next: (response) => {
+      next: (response: Post[]) => {
         this.posts = response;
       },
       error: (error) => {
