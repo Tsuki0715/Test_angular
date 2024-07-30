@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Post } from '../interfaces/posts.interface';
+import { Product } from '../interfaces/data.interface';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +18,9 @@ export class MessagesService {
 
   getPosts() : Observable<Post[]> {
     return this.http.get<Post[]>(this.apiUrl);
+  }
+
+  getProducts() : Observable<Product> {
+    return this.http.get<Product>('http://localhost:1200/products');
   }
 }

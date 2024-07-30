@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AppendPipe } from './pipes/append.pipe';
 import { MessagesService } from './services/messages.service';
 import { Post } from './interfaces/posts.interface';
+import { Product } from './interfaces/data.interface';
 
 @Component({
   selector: 'app-root',
@@ -97,6 +98,15 @@ export class AppComponent implements OnInit {
       error: (error) => {
         console.error(error);
       }
-    })
+    });
+
+    this.messageService.getProducts().subscribe({
+      next: (data: Product) => {
+        console.log(data)
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
   }
 }
