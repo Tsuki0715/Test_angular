@@ -1,5 +1,5 @@
 <main class="main">
-    <h1>Hello, {{ title }}</h1>
+    <h1>Hello, {{ title1 }}</h1>
     <button type="button" [disabled]="isDisabled">{{ myBtn }}</button>
 
     <!-- attr binding -->
@@ -7,7 +7,7 @@
 
     <!-- style binding -->
     <div [style.backgroundColor]="bgColor">
-        <h2 [style.color]="titleColor">{{ title }}</h2>
+        <h2 [style.color]="titleColor">{{ title1 }}</h2>
         <p [style]="description">Description</p>
     </div>
 
@@ -30,6 +30,7 @@
 
     <!-- ngStyle -->
     <div class="color-box" [ngStyle]="{'background-color': selectedColor}">Box</div>
+
 
     <!-- Structural Directives -->
     <h1>{{ title2 }}</h1>
@@ -54,4 +55,21 @@
         <p *ngSwitchCase="'B'">Good</p>
         <p *ngSwitchDefault>Unknown</p>
     </div>
+
+
+    <!-- Pipes -->
+    <h1>{{ title3 | uppercase }}</h1>
+    <h1>{{ title3 | lowercase }}</h1>
+
+    <div>
+        <p>Today is {{ today | date }}</p>
+        <p>Today is {{ today | date: 'hh:mm:ss' }}</p>
+    </div>
+
+    <p>{{ currency | currency: 'USD' }}</p>
+    <p>{{ currency | currency: 'HKD' : 'symbol' : '2.1-4' }}</p>
+
+    <p>{{ currency | percent : "" }}</p>
+
+    <h2>{{ title3 | append : "Custom" }}</h2>
 </main>

@@ -2,17 +2,18 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AppendPipe } from './pipes/append.pipe';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, CommonModule],
+  imports: [RouterOutlet, FormsModule, CommonModule, AppendPipe],
   // templateUrl: './app.component.html',
   templateUrl: './home.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title: string = 'hello-world';
+  title1: string = 'hello-world';
   myBtn: string = 'My Button';
   counter: number = 0;
 
@@ -46,14 +47,12 @@ export class AppComponent {
   // ngStyle
   selectedColor: string = 'red';
 
-  /* 
-  *********************
+  /**********************
   Structural Directives 
-  *********************
-  */
+  **********************/
+  title2: string = 'Structural Directives';
 
   // ngIf
-  title2: string = 'Structural Directives';
   isLoggedIn: boolean = true;
   username: string = 'Terry';
 
@@ -62,4 +61,15 @@ export class AppComponent {
 
   // ngSwitch
   grade: string = "A";
+
+  /**********************
+  Pipes
+  **********************/
+  title3: string = 'Pipes';
+
+  today: number = Date.now();
+
+  currency: number = 1.3456;
+
+
 }
