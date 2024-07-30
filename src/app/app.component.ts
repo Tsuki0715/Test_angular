@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AppendPipe } from './pipes/append.pipe';
+import { MessagesService } from './services/messages.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ import { AppendPipe } from './pipes/append.pipe';
   imports: [RouterOutlet, FormsModule, CommonModule, AppendPipe],
   // templateUrl: './app.component.html',
   templateUrl: './home.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  providers: [MessagesService],
 })
 export class AppComponent {
   title1: string = 'hello-world';
@@ -70,6 +72,15 @@ export class AppComponent {
   today: number = Date.now();
 
   currency: number = 1.3456;
+
+  /**********************
+  ServicesDI
+  **********************/
+  title4: string = 'ServicesDI';
+  messages2: string[] = [];
+  constructor(private messageService: MessagesService) { 
+    this.messages2 = messageService.getMessages();
+  }
 
 
 }
