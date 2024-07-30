@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, FormsModule, CommonModule],
   // templateUrl: './app.component.html',
   templateUrl: './home.html',
   styleUrl: './app.component.scss'
@@ -33,4 +35,14 @@ export class AppComponent {
     this.counter++;
     console.log (`Counter: ${this.counter}`);
   }
+
+  // FormsModule
+  inputText: string = "Initial Value";
+
+  // ngClass
+  message: string = 'This is a dangerous message!';
+  classes: string = 'danger text-size';
+
+  // ngStyle
+  selectedColor: string = 'red';
 }
