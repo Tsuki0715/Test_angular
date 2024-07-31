@@ -6,11 +6,18 @@ import { AppendPipe } from './pipes/append.pipe';
 import { MessagesService } from './services/messages.service';
 import { Post } from './interfaces/posts.interface';
 import { Product } from './interfaces/data.interface';
+import { TaskComponent } from './components/task/task.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, CommonModule, AppendPipe, ReactiveFormsModule],
+  imports: [
+    RouterOutlet, 
+    FormsModule, 
+    CommonModule, 
+    AppendPipe, 
+    ReactiveFormsModule, 
+    TaskComponent],
   // templateUrl: './app.component.html',
   templateUrl: './home.html',
   styleUrl: './app.component.scss',
@@ -170,5 +177,14 @@ export class AppComponent implements OnInit {
     if (this.userReactiveForm.valid) {
       console.log(this.userReactiveForm.value);
     }
+  }
+
+  // Component
+  title8: string = 'Component';
+  tasks: string[] = ['Task 1', 'Task 2', 'Task 3'];
+
+  deleteTask(task: string) {  
+    this.tasks = this.tasks.filter(t => t !== task);
+    console.log(this.tasks);
   }
 }

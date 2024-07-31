@@ -185,4 +185,14 @@
             <button type="submit" [disabled]="!userReactiveForm.valid">Submit</button>
         </div>
     </form>
+
+    <!-- Components -->
+    <hr/>
+    <h1>{{ title8 }}</h1>
+    <app-task
+        *ngFor="let t of tasks"
+        [task]="t"
+        (taskDeleted)="deleteTask(t)"
+    >
+    </app-task>
 </main>
