@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AppendPipe } from './pipes/append.pipe';
 import { MessagesService } from './services/messages.service';
@@ -108,5 +108,25 @@ export class AppComponent implements OnInit {
         console.error(error);
       }
     });
+  }
+
+  /**********************
+  Template Driven Forms
+  **********************/
+  title6: string = 'Template Driven Forms';
+  user: {name: string; email: string} = {
+    name: '',
+    email: '',
+  }
+
+  onSubmit(userForm: NgForm) {
+    if (userForm.valid) {
+      console.log(userForm.value, this.user);
+    }
+  }
+
+  validateEmail(): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(this.user.email);
   }
 }
