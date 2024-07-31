@@ -124,4 +124,65 @@
             </div>
         </form>
     </div>
+
+    <!-- Reactive Forms -->
+    <hr/>
+    <h1>{{ title7 }}</h1>
+    <form [formGroup]="userReactiveForm" (ngSubmit)="onSubmit2()">
+        <div>
+            <label for="name">Name:</label>
+            <input 
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter name"
+                formControlName="name"
+                required
+            />
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input 
+                type="text"
+                id="email"
+                name="email"
+                placeholder="Enter email"
+                formControlName="email"
+                required
+            />
+        </div>
+        <div formGroupName="address">
+            <label for="street">Street:</label>
+            <input 
+                type="text"
+                id="street"
+                name="street"
+                placeholder="Enter street"
+                formControlName="street"
+                required
+            />
+            <label for="city">City:</label>
+            <input
+                type="text"
+                id="city"
+                name="city"
+                placeholder="Enter city"
+                formControlName="city"
+                required
+            />
+        </div>
+        <div formArrayName="phoneNumbers">
+            <div *ngFor="let phone of phoneNumbers.controls; let i = index">
+                <label>Phone Number {{i+1}}: </label>
+                <input type="text" [formControlName]="i" />
+                <button type="button" (click)="removePhoneNumber(i)">Remove phone number</button>
+            </div>
+            <div>
+                <button type="button" (click)="addPhoneNumber()">Add phone number</button>
+            </div>
+        </div>
+        <div>
+            <button type="submit" [disabled]="!userReactiveForm.valid">Submit</button>
+        </div>
+    </form>
 </main>

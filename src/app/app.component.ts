@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AppendPipe } from './pipes/append.pipe';
 import { MessagesService } from './services/messages.service';
@@ -10,7 +10,7 @@ import { Product } from './interfaces/data.interface';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, CommonModule, AppendPipe],
+  imports: [RouterOutlet, FormsModule, CommonModule, AppendPipe, ReactiveFormsModule],
   // templateUrl: './app.component.html',
   templateUrl: './home.html',
   styleUrl: './app.component.scss',
@@ -80,9 +80,9 @@ export class AppComponent implements OnInit {
   **********************/
   title4: string = 'ServicesDI';
   messages2: string[] = [];
-  constructor(private messageService: MessagesService) { 
-    this.messages2 = messageService.getMessages();
-  }
+  // constructor(private messageService: MessagesService) { 
+  //   this.messages2 = messageService.getMessages();
+  // }
 
   /**********************
   API Integration with HttpClient Module
@@ -128,5 +128,47 @@ export class AppComponent implements OnInit {
   validateEmail(): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(this.user.email);
+  }
+
+  /**********************
+  Reactive Forms
+  **********************/
+  title7: string = 'Reactive Forms';
+  userReactiveForm!: FormGroup;
+
+  constructor(private formBuilder: FormBuilder, private messageService: MessagesService) { 
+    // ServicesDI
+    this.messages2 = messageService.getMessages();
+
+    // Reactive Forms
+    this.userReactiveForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      address: this.formBuilder.group({
+        street: ['', Validators.required],
+        city: ['', Validators.required],
+      }),
+      phoneNumbers: this.formBuilder.array([
+        this.formBuilder.control('', [Validators.required, Validators.minLength(8)]),
+      ]),
+    });
+  }
+
+  get phoneNumbers() {
+    return this.userReactiveForm.get('phoneNumbers') as FormArray;
+  }
+
+  removePhoneNumber(index: number) {
+    this.phoneNumbers.removeAt(index);
+  }
+
+  addPhoneNumber() {
+    this.phoneNumbers.push(this.formBuilder.control('', [Validators.required, Validators.minLength(8)]));
+  }
+
+  onSubmit2() {
+    if (this.userReactiveForm.valid) {
+      console.log(this.userReactiveForm.value);
+    }
   }
 }
